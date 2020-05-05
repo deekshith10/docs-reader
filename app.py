@@ -1,4 +1,4 @@
-import PyPDF2
+import fitz
 from flask import Flask, render_template,request
 app = Flask(__name__)
 @app.route("/")
@@ -8,7 +8,10 @@ def index():
 @app.route("/files",methods=["POST"])
 def pdf():
     f=request.form.get("myfile")
-    pdfReader = PyPDF2.PdfFileReader(f)
-    pageObj = pdfReader.getPage(1)
-    data=pageObj.extractText()
+    pdfReader = fitz.open(f)
+    
+    pageObj = pdfReader.loadPage(0)
+    data=pageObj.getText()
     return render_template("files.html",data=data)
+
+#PyMuPDF
