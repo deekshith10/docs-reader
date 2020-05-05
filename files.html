@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Files</title>
+    </head>
+    <body>
+        <form action="{{url_for('pdf')}}" method="POST">
+        <input type="file" name="myfile">
+
+        <button><input type="submit"></button>
+        </form>
+
+        <h4>{{data}}</h4>
+    </body>
+</html>
